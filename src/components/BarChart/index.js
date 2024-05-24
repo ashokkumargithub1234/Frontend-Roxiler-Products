@@ -31,15 +31,15 @@ const BarChartTask = (props) => {
       <BarChart
         width={900}
         height={400}
-        data={barChartData.barChartData}
+        data={barChartData}
         margin={{
           top: 5,
         }}
       >
-        <XAxis dataKey="range" />
-        <YAxis />
+        <XAxis dataKey="priceRange" />
+        <YAxis dataKey="totalItems" />
         <Tooltip />
-        <Bar dataKey="count" fill="#6ce5e8" />
+        <Bar dataKey="totalItems" fill="#6ce5e8" />
       </BarChart>
     </div>
   );

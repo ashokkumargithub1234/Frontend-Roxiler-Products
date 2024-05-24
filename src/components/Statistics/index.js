@@ -2,7 +2,14 @@ import "./index.css";
 
 const Statistics = (props) => {
   const { statisticsDetails, selectMonth, months, changeMonth } = props;
-  const { totalSaleAmount, soldItems, notSoldItems } = statisticsDetails;
+  const statisticsObject = statisticsDetails.reduce((acc, object) => {
+    return { ...acc, ...object };
+  }, {});
+  const {
+    total_sale_amt,
+    Total_sold_items,
+    Total_unSold_items,
+  } = statisticsObject;
   const changeMonthText = (event) => {
     changeMonth(event);
   };
@@ -30,15 +37,15 @@ const Statistics = (props) => {
         <tbody>
           <tr>
             <td>Total sale</td>
-            <td>{Math.round(totalSaleAmount.total * 100) / 100}</td>
+            <td>{Math.round(total_sale_amt * 100) / 100}</td>
           </tr>
           <tr>
             <td>Total sold item</td>
-            <td>{soldItems.count}</td>
+            <td>{Total_sold_items}</td>
           </tr>
           <tr>
             <td>Total not sold item</td>
-            <td>{notSoldItems.count}</td>
+            <td>{Total_unSold_items}</td>
           </tr>
         </tbody>
       </table>

@@ -2,13 +2,14 @@ import "./index.css";
 
 const Transactions = (props) => {
   const { listTransactions, page, increment, decrement } = props;
-  const { transactions, total } = listTransactions;
+  const { transactionsData, totalItems } = listTransactions;
   const incrementPage = () => {
     increment();
   };
   const decrementPage = () => {
     decrement();
   };
+
   const renderTableData = () => {
     return (
       <>
@@ -25,7 +26,7 @@ const Transactions = (props) => {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((eachData) => (
+            {transactionsData.map((eachData) => (
               <tr key={eachData.id}>
                 <td>{eachData.id}</td>
                 <td>{eachData.title}</td>
@@ -47,16 +48,16 @@ const Transactions = (props) => {
         <div className="pagination-container">
           <p>Page No: {page}</p>
           <div>
+            <button type="button" onClick={decrementPage} disabled={page === 1}>
+              Previous
+            </button>
+            <span> - </span>
             <button
               type="button"
               onClick={incrementPage}
-              disabled={page === Math.ceil(total.total / 10)}
+              disabled={page === Math.ceil(totalItems.total / 10)}
             >
               Next
-            </button>
-            <span> - </span>
-            <button type="button" onClick={decrementPage} disabled={page === 1}>
-              Previous
             </button>
           </div>
           <p>Per Page: 10</p>
@@ -73,7 +74,7 @@ const Transactions = (props) => {
   };
   return (
     <div className="table-container">
-      {transactions.length > 0 ? renderTableData() : renderNoData()}
+      {transactionsData.length > 0 ? renderTableData() : renderNoData()}
     </div>
   );
 };

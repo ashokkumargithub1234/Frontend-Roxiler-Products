@@ -17,7 +17,7 @@ const PieChartTask = (props) => {
   };
 
   // Generate an array of random colors based on the number of data points
-  const colors = pieChartData.pieChartData.map(() => getRandomColor());
+  const colors = pieChartData.map(() => getRandomColor());
   return (
     <div className="pieChart-container">
       <div className="pieChart-header-container">
@@ -40,15 +40,15 @@ const PieChartTask = (props) => {
       </div>
       <PieChart width={1000} height={400}>
         <Pie
-          data={pieChartData.pieChartData}
+          data={pieChartData}
           cx="50%"
           cy="30%"
           outerRadius="60%"
-          dataKey="count"
+          dataKey="items"
           nameKey="category"
           label
         >
-          {pieChartData.pieChartData.map((eachCell, index) => (
+          {pieChartData.map((eachCell, index) => (
             <Cell name={eachCell.category} fill={colors[index]} />
           ))}
         </Pie>

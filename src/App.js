@@ -49,7 +49,7 @@ class App extends Component {
       apiStatus: apiStatusConstants.inProgress,
     });
     const offset = (page - 1) * limit;
-    const apiUrl = `https://roxiler-systems-assignment.onrender.com/combined-response?month=${selectedMonth}&s_query=${searchText}&limit=${limit}&offset=${offset}`;
+    const apiUrl = `https://assessmentroxilercodingpracticesolution.onrender.com/transactions-charts?selectedMonth=${selectedMonth}&searchText=${searchText}&limit=${limit}&offset=${offset}`;
     const response = await fetch(apiUrl);
     if (response.ok) {
       const data = await response.json();
@@ -135,7 +135,7 @@ class App extends Component {
         </select>
       </div>
       <Transactions
-        listTransactions={productsData.listTransactions}
+        listTransactions={productsData.transactions}
         page={page}
         increment={this.incrementPage}
         decrement={this.decrementPage}
@@ -177,8 +177,8 @@ class App extends Component {
       <>
         {this.renderTransactions(productsData, page, searchText, selectedMonth)}
         {this.renderStatistics(selectedMonth, productsData.statistics)}
-        {this.renderBarChart(selectedMonth, productsData.barChart)}
-        {this.renderPieChart(selectedMonth, productsData.pieChart)}
+        {this.renderBarChart(selectedMonth, productsData.barChartData)}
+        {this.renderPieChart(selectedMonth, productsData.pieChartData)}
       </>
     );
   };
